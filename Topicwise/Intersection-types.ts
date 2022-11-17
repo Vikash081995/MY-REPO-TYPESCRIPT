@@ -51,26 +51,10 @@ function contact1(details: ContactDetails) {
   console.log(`Dear ${details.name} your email is ${details.email}
     and phone number is ${details.phone}`);
 }
-// =======================-----------------------------------------------------
-
-function extend<T, U>(first: T, second: U): T & U {
-  let result1 = <T & U>{};
-  for (let id in first) {
-    result1[id] = first[id];
-  }
-  for (let id in second) {
-    if (!result1.hasOwnProperty(id)) {
-      result1[id] = second[id];
-    }
-  }
-  return result1;
-}
-var x12 = extend({ a: "hello" }, { b: 42 });
-
-var a = x12.a;
-var b = x12.b;
 // =========================================================================
 // A Intersection Type combines the member of two or more types.
+// =========================================================================
+
 interface Knife {
   cut(): void;
 }

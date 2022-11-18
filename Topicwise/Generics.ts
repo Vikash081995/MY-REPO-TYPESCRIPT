@@ -39,19 +39,19 @@ console.log(john12.email);
 console.log(john12.fullName);
 
 // ==================================
-class List23<T> {
-  add(val: T) {}
-}
+// class List23<T> {
+//   add(val: T) {}
+// }
 
-class Animal23 {
-  name: string;
-}
+// class Animal23 {
+//   name: string;
+// }
 
-class Cat extends Animal23 {
-  meow() {}
-}
+// class Cat56 extends Animal23 {
+//   meow() {}
+// }
 
-const animals = new List<Animal>();
+// const animals = new Lister<Animal>();
 // ====================================
 // Type Parameters as constraints
 // ====================================
@@ -81,3 +81,96 @@ function runSafe<T extends IRunnabler>(runnable: T): void {
     runnable.run();
   } catch (e) {}
 }
+// ================================================
+// const names: Array<string | number> = ["Max", "Manuel"];
+
+// const promise: Promise<number> = new Promise((resolve, reject) => {
+//   setTimeout(() => {
+//     resolve(10);
+//   }, 2000);
+// });
+
+// promise.then(data =>{
+//     data.split('');
+// })
+// =====================
+
+// function merge<T, U>(objA: T, objB: U){
+//   return Object.assign(objA, objB);
+// }
+
+// const mergedObj =merge<{name:string,hobbies:string[]},{age:number}>({name:'Max',hobbies:['sports']},{age:30});
+// mergedObj.age;
+// ==================
+function merge<T extends object, U extends object>(objA: T, objB: U) {
+  return Object.assign(objA, objB);
+}
+
+const mergedObj = merge({ name: "Max", hobbies: ["sports"] }, { age: 30 });
+mergedObj.age;
+// ===================
+interface Lengthy {
+  length: number;
+}
+
+function countAndPrint<T extends Lengthy>(element: T): [T, string] {
+  let descriptionText = "Got no value";
+  if (element.length > 0) {
+    descriptionText = "Got " + element.length + "elements";
+  } else if (element.length > 1) {
+    descriptionText = "Got" + element.length + "elements";
+  }
+  return [element, descriptionText];
+}
+console.log(countAndPrint(["sports", "Cooking"]));
+// ===============================
+function extractAndConvert<T extends object, U extends keyof T>(
+  obj: T,
+  key: U
+) {
+  return "value" + obj[key];
+}
+console.log(extractAndConvert({ name: "Max" }, "name"));
+// =====================
+class DataStorage<T extends string | number | boolean> {
+  private data: T[] = [];
+
+  addItem(item: T) {
+    this.data.push(item);
+  }
+  removeItem(item: T) {
+    this.data.splice(this.data.indexOf(item), 1);
+  }
+  getItems() {
+    return [...this.data];
+  }
+}
+
+const textStorage = new DataStorage<string>();
+textStorage.addItem("Max");
+textStorage.addItem("Manu");
+textStorage.removeItem("Max");
+console.log(textStorage.getItems());
+
+const numberStorage = new DataStorage<number>();
+// ===============================
+interface CourseGoal {
+  title: string;
+  description: string;
+  completeUntil: Date;
+}
+
+function createCourseGoal(
+  title: string,
+  description: string,
+  date: Date
+): CourseGoal {
+  let courseGoal: Partial<CourseGoal> = {};
+  courseGoal.title = title;
+  courseGoal.description = description;
+  courseGoal.completeUntil = date;
+  return courseGoal as CourseGoal;
+}
+// ===========================
+const names: Readonly<string[]> = ["Max", "Sports"];
+// names.push("Manu");

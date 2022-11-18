@@ -72,3 +72,50 @@ function use(tool: SwissArmyKnife) {
   tool.turnScrew();
 }
 // ==============================================================================
+type Admin = {
+  name: string;
+  privileges: string[];
+};
+
+type Employee90 = {
+  name: string;
+  startDate: Date;
+};
+
+type ElevatedEmployee = Admin & Employee90;
+
+const e13: ElevatedEmployee = {
+  name: "Max",
+  privileges: ["create-server"],
+  startDate: new Date()
+};
+
+type Combinable = string | number;
+type Numeric = number | boolean;
+
+type Universal = Combinable & Numeric;
+
+function adding(a: number, b: number): number;
+function adding(a: string, b: string): string;
+function adding(a: Combinable, b: Combinable) {
+  if (typeof a === "string" || typeof b === "string") {
+    return a.toString() + b.toString();
+  }
+  return a + b;
+}
+// ===================================
+// typeGaurds
+// =================
+
+type UnknownEmployee = Employee90 | Admin;
+
+function printEmployeeInformation(emp: UnknownEmployee) {
+  console.log("Name" + emp.name);
+  if ("privileges" in emp) {
+    console.log("Privileges" + emp.privileges);
+  }
+  if ("startDate" in emp) {
+    console.log("Privileges" + emp.startDate);
+  }
+}
+printEmployeeInformation(e13);

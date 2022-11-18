@@ -4,12 +4,12 @@ interface UserInterface {
   age: number;
 }
 
-const user1: UserInterface = {
+const user10: UserInterface = {
   id: 1,
   name: "john",
   age: 8
 };
-console.log(user1.id);
+console.log(user10.id);
 
 // ================interface with class===============
 interface PersonInterface {
@@ -102,6 +102,41 @@ let child: Child = {
 console.log(child.x);
 console.log(child.y);
 console.log(child.z);
+// ================================================
+interface Named {
+  readonly name: string;
+}
+
+// Extending Interfaces
+interface Greetable extends Named {
+  greet(phrase: string): void;
+}
+
+class Person12 implements Greetable {
+  name: string;
+  age = 30;
+  constructor(name: string) {
+    this.name = name;
+  }
+  greet(phrase: string) {
+    console.log(phrase + "" + this.name);
+  }
+}
+
+let user1: Greetable;
+user1 = new Person12("Max");
+user1.greet("hi Max");
+
+// interface as Function Types
+interface AddFn {
+  (a: number, b: number): number;
+}
+let add12: AddFn;
+
+add12 = (n1: number, n2: number) => {
+  return n1 + n2;
+};
+
 // ===============================================
 // Using  Interface  for Polymorphism
 // ===============================================
@@ -109,14 +144,14 @@ interface Connector {
   deConnect(): boolean;
 }
 
-export class WifiConnector implements Connector {
-  public doConnect(): boolean {
-    console.log("connecting via wifi");
-    console.log("Get Password");
-    console.log("Lease an IP for 24 hours ");
-    return true;
-  }
-}
+// export class WifiConnector implements Connector {
+//   public doConnect(): boolean {
+//     console.log("connecting via wifi");
+//     console.log("Get Password");
+//     console.log("Lease an IP for 24 hours ");
+//     return true;
+//   }
+// }
 
 export class System {
   constructor(private connector: Connector) {
@@ -161,44 +196,44 @@ s.emit({ code: 200 });
 s.getAll().forEach((event) => console.log(event.code));
 
 // ===========================================================
-// Declaring a generic interface 
+// Declaring a generic interface
 // ===========================================================
 interface IResult<T> {
   wasSuccessfull: boolean;
   error: T;
 }
 
-var result :IResult<string>=.........
-var error:string= result.error;
+// var result :IResult<string>=.........
+// var error:string= result.error;
 
 // Generic interface with multiple type parameters
-interface IRunnable<T,U>{
-  run(input:T): U;
+interface IRunnable<T, U> {
+  run(input: T): U;
 }
-var runnable :IRunnable<string,number>=...
-var input:string;
-var result :number = runnable.run(input);
+// var runnable :IRunnable<string,number>=...
+// var input:string;
+// var result :number = runnable.run(input);
 // =============================================================
 // Implementing a generic interface
-// =============================================================
-interface IResult<T>{
-  wasSuccessfull:boolean;
-  error:T;
-  clone():IResult<T>;
-}
+// // =============================================================
+// interface IResult<T>{
+//   wasSuccessfull:boolean;
+//   error:T;
+//   clone():IResult<T>;
+// }
 // ->implementing with generic class
- class Result<T> implements IResult<T>{
-  constructor(public result:boolean, public error:T){
-  }
-  public clone():IResult<T> {
-    return new Result<T>(this.result, this.error);
-  }
- }
+//  class Result<T> implements IResult<T>{
+//   constructor(public result:boolean, public error:T){
+//   }
+//   public clone():IResult<T> {
+//     return new Result<T>(this.result, this.error);
+//   }
+//  }
 //  -> implementing with non generic class
 
-class StResult implements IResult<string> {
-  constructor(public result:boolean, public error:string){}
-  public clone():IResult<string> {
-    return new StringResult(this.result, this.error);
-  }
-}
+// class StResult implements IResult<string> {
+//   constructor(public result:boolean, public error:string){}
+//   public clone():IResult<string> {
+//     return new StringResult(this.result, this.error);
+//   }
+// }

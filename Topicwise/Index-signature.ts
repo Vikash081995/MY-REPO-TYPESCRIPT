@@ -38,11 +38,16 @@ const bad: FromIndex = {
   c: 2,
   d: 3
 };
-// ======================================================
-// having both string and number indexers
-// ===============================================
-interface ArrStr {
-  [key: string]: string | number;
-  [index: number]: string;
-  length: number;
+// =================================================
+interface NestedCSS {
+  color?: string;
+  [selector: string]: string | NestedCSS | undefined;
 }
+
+const example12: NestedCSS = {
+  color: "red",
+  ".subclass": {
+    color: "blue"
+  }
+};
+// =================================================

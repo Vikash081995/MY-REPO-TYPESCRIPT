@@ -54,3 +54,5 @@ class Bird extends Animal231 {
     console.log(`${this.name} flew ${distanceInMeters}m.`);
   }
 }
+
+

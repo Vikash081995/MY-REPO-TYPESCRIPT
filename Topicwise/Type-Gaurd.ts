@@ -63,7 +63,7 @@ function moveAnimal(animal: _Animal) {
   console.log("Moving at speed:" + speed);
 }
 
-moveAnimal({ type: "bird", flyingSpeed: 10 });
+// moveAnimal({ type: "bird", flyingSpeed: 10 });
 
 // =============================
 // IN OPERATOR FOR TYPE GAURDS CHECKING
@@ -99,3 +99,37 @@ function doStuff23(arg: Fooka | Bara) {
     console.log(arg.bar);
   }
 }
+// ========================
+// Type Gaurding Functions
+// ========================
+// function functionName(variableName:any):variableName is DesiredType{}
+// ==============================================================
+
+function isString(test: any): test is string {
+  return typeof test === "string";
+}
+
+function exampler(foo: any) {
+  if (isString(foo)) {
+    console.log("it's a string" + foo);
+  } else {
+    console.log(` don't know what is foo`);
+  }
+}
+exampler("hello world");
+// =====================================
+// using typeof in type-gaurds
+// =====================================
+function example4(foo: any) {
+  if (typeof foo === "number") {
+    console.log(foo + 100);
+  }
+  if (typeof foo === "string") {
+    console.log(foo + 100);
+  }
+}
+example4(23);
+example4("foo");
+// ==============================================
+// Type Gaurds and callbacks
+// ============================================

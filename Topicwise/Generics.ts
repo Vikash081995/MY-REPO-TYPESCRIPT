@@ -43,14 +43,41 @@ class List23<T> {
   add(val: T) {}
 }
 
-class Animal23{
+class Animal23 {
   name: string;
 }
 
-class Cat extends Animal23{
-  meow(){
-
-  }
+class Cat extends Animal23 {
+  meow() {}
 }
 
-const animals = new List <Animal>();
+const animals = new List<Animal>();
+// ====================================
+// Type Parameters as constraints
+// ====================================
+function assign<T extends U, U>(target: T, source: U): T {
+  for (let id in source) {
+    target[id] = source[id];
+  }
+  return target;
+}
+let xr = { a: 1, b: 2, c: 3, d: 4 };
+assign(xr, { b: 10, d: 20 });
+// ====================================
+// generic constraints
+// ====================================
+
+interface IRunnabler {
+  run(): void;
+}
+interface IRunner<T extends IRunnabler> {
+  runSafe(runnable: T): void;
+}
+// ====================================
+// generic functions
+// ===================================
+function runSafe<T extends IRunnabler>(runnable: T): void {
+  try {
+    runnable.run();
+  } catch (e) {}
+}

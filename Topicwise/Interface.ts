@@ -196,7 +196,7 @@ interface IResult<T>{
  }
 //  -> implementing with non generic class
 
-class StringResult implements IResult<string> {
+class StResult implements IResult<string> {
   constructor(public result:boolean, public error:string){}
   public clone():IResult<string> {
     return new StringResult(this.result, this.error);

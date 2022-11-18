@@ -36,7 +36,7 @@ for(let item in passenger){
 class Animal231 {
   private name!: string;
 
-  constructot(name: string) {
+  constructor(name: string) {
     this.name = name;
   }
 
@@ -45,9 +45,9 @@ class Animal231 {
   }
 }
 
-let cat = new Animal231("Cat");
-cat.move(10);
-cat.name = "Dog";
+let catrm = new Animal231("Cat");
+catrm.move(10);
+catrm.name = "Dog";
 
 class Bird extends Animal231 {
   fly(distanceInMeters: number): void {

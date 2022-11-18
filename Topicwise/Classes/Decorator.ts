@@ -24,3 +24,21 @@ function getMetadataFromClass(target: any) {
 }
 console.log(getMetadataFromClass(Person123));
 // ------------------------------------------------------
+// basic class decorator
+// ------------------------------------------------------
+
+function log<T>(target: T) {
+  console.log("", target);
+  return target;
+}
+
+@log
+class Personr {
+  private _name: string;
+  public constructor(name: string) {
+    this._name = name;
+  }
+  public greet() {
+    return this._name;
+  }
+}

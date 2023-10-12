@@ -30,5 +30,4 @@ function add12(n1:number, n2:number, showResult:boolean,phrase:string){
     const resultPhrase = 'Result is:';
     
     const result = add12(number1, number2,printResult,resultPhrase);
-    console.log(result);
-    
+    console.log(result)
